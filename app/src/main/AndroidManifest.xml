@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecipeApp">
         <activity
-            android:name=".MainActivity"
+            android:name=".UI.About.AboutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.Recipes.RecipesActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.RecipeApp.NoActionBar">

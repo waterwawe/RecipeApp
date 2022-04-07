@@ -1,4 +1,8 @@
 package com.example.recipeapp.UI.Recipes
 
-class RecipesRepository {
+import javax.inject.Inject
+
+class RecipesRepository @Inject constructor(
+    //private val recipeService: RecipeService
+){
 }

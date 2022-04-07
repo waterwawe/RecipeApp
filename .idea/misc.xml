@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Git/RecipeApp/app/src/main/res/layout/activity_about.xml" value="0.1" />
+        <entry key="..\:/Git/RecipeApp/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Git/RecipeApp/app/src/main/res/layout/activity_recipes.xml" value="0.1" />
+        <entry key="..\:/Git/RecipeApp/app/src/main/res/layout/activity_recipes2.xml" value="0.18802083333333333" />
         <entry key="..\:/Git/RecipeApp/app/src/main/res/layout/recipe_fragment.xml" value="0.19635416666666666" />
       </map>
     </option>

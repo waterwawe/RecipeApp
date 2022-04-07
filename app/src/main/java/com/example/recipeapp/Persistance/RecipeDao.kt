@@ -1,4 +1,7 @@
 package com.example.recipeapp.Persistance
 
-class RecipeDao {
+import androidx.room.Dao
+
+@Dao
+interface RecipeDao {
 }

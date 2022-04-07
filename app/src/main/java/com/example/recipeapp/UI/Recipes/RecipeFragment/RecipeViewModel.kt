@@ -1,7 +1,11 @@
 package com.example.recipeapp.UI.Recipes.RecipeFragment
 
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class RecipeViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+@HiltViewModel
+class RecipeViewModel @Inject constructor(
+): ViewModel() {
+
 }

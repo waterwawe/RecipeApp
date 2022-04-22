@@ -1,4 +1,4 @@
-package com.example.recipeapp.network
+package com.example.recipeapp.Network
 
 import com.example.recipeapp.model.Recipe
 import retrofit2.Call

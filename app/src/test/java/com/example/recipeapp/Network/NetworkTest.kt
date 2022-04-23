@@ -12,7 +12,7 @@ import retrofit2.http.QueryMap
 import java.util.*
 import javax.inject.Inject
 
-/*@RunWith(RobolectricTestRunner::class)
+@RunWith(RobolectricTestRunner::class)
 class NetworkTest@Inject constructor(
     private val recipeService: RecipeService
 ) {
@@ -31,5 +31,5 @@ class NetworkTest@Inject constructor(
         val result = apiResponse.execute()
 
         assertTrue(result.isSuccessful)
-    }*/
+    }
 }

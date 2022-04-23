@@ -17,7 +17,7 @@ class NetworkTest@Inject constructor(
     private val recipeService: RecipeService
 ) {
 
-    @Test
+    /*@Test
     fun apiqueryTest_ShouldBeSuccessful() = runBlockingTest {
         val pulledPork  = "pulled pork"
         val queryParams = HashMap<String,String>();
@@ -31,5 +31,5 @@ class NetworkTest@Inject constructor(
         val result = apiResponse.execute()
 
         assertTrue(result.isSuccessful)
-    }
+    }*/
 }

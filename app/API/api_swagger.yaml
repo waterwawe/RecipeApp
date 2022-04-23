@@ -1,0 +1,88 @@
+swagger: "2.0"
+info:
+  description: "Recipe App API leírása"
+  version: "1.0.0"
+  title: "Recipe Server API"
+host: "localhost:5000"
+basePath: "/api"
+tags:
+- name: "Recipes"
+  description: "Recipe related operations"
+
+schemes:
+- "http"
+paths:
+  /favrecipes:
+    get:
+      tags:
+      - "Recipes"
+      summary: "Returns all the saved favourite recipes"
+      operationId: "GetFavouriteRecipes"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Recipe"
+    put:
+      tags:
+      - "Recipes"
+      summary: "Creates or updates a recipe"
+      operationId: "AddOrEditRecipe"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "The Recipe to update"
+        required: true
+        schema:
+          $ref: "#/definitions/Recipe"
+      responses:
+        201:
+          description: "Recipe successfully created."
+        204:
+          description: "Recipe successfully updated."
+  /favrecipes/{id}:
+    delete:
+      tags:
+      - "Recipes"
+      summary: "Deletes a recipe"
+      operationId: "DeleteRecipe"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "The Recipe to delete's id"
+        type: "integer"
+        required: true
+      responses:
+        204:
+          description: "Recipe successfully deleted."
+
+definitions:
+  Recipe:
+    type: "object"
+    required:
+    - "title"
+    - "imageSource"
+    - "calories"
+    - "timeToMake"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+      calories:
+        type: "number"
+      timeToMake:
+        type: "number"

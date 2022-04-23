@@ -12,12 +12,12 @@ import retrofit2.http.QueryMap
 import java.util.*
 import javax.inject.Inject
 
-@RunWith(RobolectricTestRunner::class)
+/*@RunWith(RobolectricTestRunner::class)
 class NetworkTest@Inject constructor(
     private val recipeService: RecipeService
 ) {
 
-    /*@Test
+    @Test
     fun apiqueryTest_ShouldBeSuccessful() = runBlockingTest {
         val pulledPork  = "pulled pork"
         val queryParams = HashMap<String,String>();

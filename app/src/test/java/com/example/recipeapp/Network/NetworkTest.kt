@@ -4,6 +4,7 @@ import com.example.recipeapp.DI.NetworkConfig
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertThat
 import org.junit.Assert.assertTrue
+import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -13,9 +14,10 @@ import java.util.*
 import javax.inject.Inject
 
 @RunWith(RobolectricTestRunner::class)
-class NetworkTest@Inject constructor(
-    private val recipeService: RecipeService
-) {
+class NetworkTest {
+
+    @Inject
+    lateinit var recipeService: RecipeService
 
     @Test
     fun apiqueryTest_ShouldBeSuccessful() = runBlockingTest {

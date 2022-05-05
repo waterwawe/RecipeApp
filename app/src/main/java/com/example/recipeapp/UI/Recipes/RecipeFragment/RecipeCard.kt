@@ -55,7 +55,7 @@ fun RecipeCard(
         }
         Row {
             Image(
-                painter = rememberAsyncImagePainter(recipe?.imageSource),
+                painter = rememberAsyncImagePainter(recipe.imageSource),
                 contentDescription = null,
                 modifier = Modifier.size(250.dp)
             )

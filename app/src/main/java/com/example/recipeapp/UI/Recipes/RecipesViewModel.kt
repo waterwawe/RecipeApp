@@ -8,8 +8,10 @@ import androidx.lifecycle.*
 import com.example.recipeapp.model.Recipe
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 @HiltViewModel
 class RecipesViewModel @Inject constructor(
@@ -17,6 +19,12 @@ class RecipesViewModel @Inject constructor(
     ): ViewModel() {
 
     @Inject lateinit var recipesRepository: RecipesRepository
+
+    private val _recipeList: MutableLiveData<List<Recipe>> = MutableLiveData(listOf())
+    val recipeList: LiveData<List<Recipe>> get() = _recipeList
+
+    private val _favourites: MutableLiveData<List<Recipe>> = MutableLiveData(listOf())
+    val favourites: LiveData<List<Recipe>> get() = _favourites
 
     private val _isLoading: MutableState<Boolean> = mutableStateOf(false)
     val isLoading: State<Boolean> get() = _isLoading
@@ -27,22 +35,37 @@ class RecipesViewModel @Inject constructor(
     private val _selectedTab: MutableState<Int> = mutableStateOf(0)
     val selectedTab: State<Int> get() = _selectedTab
 
-    val recipeList: Flow<List<Recipe>> =
-        recipesRepository.loadRecipes(
-            onStart = { _isLoading.value = true },
-            onCompletion = { _isLoading.value = false },
-            onError = { Timber.d(it) },
-            queryString.value ?: ""
-        )
 
     fun selectTab(tab: Int) {
         _selectedTab.value = tab
-        Log.i("Tab changed","asd")
+        if(tab == 0){
+            getRecipes();
+        }
+        if(tab == 1 ){
+            getFavourites();
+        }
+    }
+
+    fun getRecipes(){
+        var list = listOf<Recipe>()
+        viewModelScope.launch {
+            list = recipesRepository.loadRecipes(_queryString.value ?: "")
+            _recipeList.value = list
+        }
     }
 
     fun saveToFavourites(recipe: Recipe) {
-        recipesRepository.addToFavourites(recipe)
-        Log.i("Added recipe",recipe?.title.toString())
+        viewModelScope.launch {
+            recipesRepository.addToFavourites(recipe)
+        }
+    }
+
+    fun getFavourites() {
+        var list = listOf<Recipe>()
+        viewModelScope.launch {
+            list = recipesRepository.getFavourites()
+            _favourites.value = list
+        }
     }
 
     fun <T : Any?> MutableLiveData<T>.default(initialValue: T) = apply { setValue(initialValue) }

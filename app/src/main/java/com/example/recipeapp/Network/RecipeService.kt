@@ -9,7 +9,7 @@ import retrofit2.http.*
 
 interface RecipeService {
 
-    @GET("recipes")
+    @GET("recipes/v2")
     suspend fun searchRecipes(@QueryMap options:Map<String, String>): ApiResponse<DataResponse>
 
     @GET("favrecipes")

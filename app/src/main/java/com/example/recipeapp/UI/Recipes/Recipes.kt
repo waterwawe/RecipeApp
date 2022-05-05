@@ -55,10 +55,8 @@ import kotlinx.coroutines.NonDisposableHandle.parent
 @Composable
 fun Recipes(viewModel: RecipesViewModel) {
     val navController = rememberNavController()
-    val recipes by viewModel.recipeList.collectAsState(initial = listOf(
-        Recipe(null,"Pulled Pork Nachos Recipe","https://edamam-product-images.s3.amazonaws.com/web-img/d65/d65cf3f76548da8bfbe8d76eee75d62a.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEL7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIQDbYrEiFoUS4lGHhXkq7dl0F6ZdZnkQn3b4OLf96DtPtQIgNrWH%2FrLwJuVZoTyzydeYy8oPkYA3CuYYwywD05UL5XEq2wQIh%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgwxODcwMTcxNTA5ODYiDCxY0T7SMjyBaYI%2F4CqvBFynTQfFL1rb8psIJWJ1SW7GnHUywuoaxY1EL5rM%2B9ipXjGuQTtjqOIuJjXunpKt0Qh6E9cJUq6n5owZbhiLTybP5Tt5t6KkhrLO1am2lWK%2FxnjtlUhVlttAriWES01wFsc8M0ZRntPzuyH%2FwUaKFwp0uwNFj0tk9K%2FZILLiAPvauy8RS5g5W%2F33p7UUhiTMC8KOMxp8SvhX%2BO3fY9bF%2Bg2ty9cLSd5xFv0SWPPeJhH5IE8cGVc3eI%2By6Or7KhS5PVxvYBiDAGAkUy8JofAWSJWf0nGS27rmzADO8EoY1r9%2Fym9sF231YiCOsK2g71%2FzfSaEbuoezVxEcSMozKsfxw4xR4D%2Bsu4VjTwPtkRdt9OU7en42MEE64YA4sURa5HullaP1Dce8TpbUZsILPodGxQzuoezHBRdqDis75swzCQyeMZwal4uJ0AY0NA9KRD%2BlakAGYTzlXfg3tv7pJpCPoNCfLOwIXOfVqNXOtPEzg%2F0owmLFa9uDSuTd3YAimm4jHIblgbgxNUvU7Ds9mGYkp0CQkPY8TXfiKWoeMghhO3AONyrg9nVes9DotuLdknUMNJBOlF8BB%2B%2FxMf6yxEcFXcuvk0%2F%2FqW7vw9xOJOsZ1W%2Fencm41%2BbhzyqYQO%2BLo5yjMEUHHEBKeVPRS%2Bo3rke8e359BOA3VXLk5Buq3ONqBjOL0D%2BbPnjCN6mkKC8DdLCBmkqUKYcHU0YMljE8Acg28HSF%2FwmeaTLuWryVPa4LW0ws8%2FNkwY6qQE5Ht64FqCdDh7UoMebzAd7C%2B%2BwYnIbLeeC8IldBmzX1qUbklNsKcEdqAtMCWy3ewRn5SWx5aozAEfXBCixr5q3JsqQwBMbrjhZb%2BkQEglFyuZAXRxqZtR6ajoa1I5ko5MByFvHhjBS07gqKU%2FoMBC3K1624p6Joxn7v4mi%2F5kT8OgHHDuB44Odd6NvGn1265Bti7lsB3eSZmlqV4u9mpYkKokfwW88SVCc&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220505T071537Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFASRX6QUR%2F20220505%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=8a136ee43ba792d803d8674875e92a6085c074de9a6aa46aceee3691b4755693",3778.9281960000003, 90.0),
-        Recipe(null,"Pulled Pork Cornbread Cups","https://edamam-product-images.s3.amazonaws.com/web-img/846/846073908d1a037a4747086f5698bbd4.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEL7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIQDbYrEiFoUS4lGHhXkq7dl0F6ZdZnkQn3b4OLf96DtPtQIgNrWH%2FrLwJuVZoTyzydeYy8oPkYA3CuYYwywD05UL5XEq2wQIh%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgwxODcwMTcxNTA5ODYiDCxY0T7SMjyBaYI%2F4CqvBFynTQfFL1rb8psIJWJ1SW7GnHUywuoaxY1EL5rM%2B9ipXjGuQTtjqOIuJjXunpKt0Qh6E9cJUq6n5owZbhiLTybP5Tt5t6KkhrLO1am2lWK%2FxnjtlUhVlttAriWES01wFsc8M0ZRntPzuyH%2FwUaKFwp0uwNFj0tk9K%2FZILLiAPvauy8RS5g5W%2F33p7UUhiTMC8KOMxp8SvhX%2BO3fY9bF%2Bg2ty9cLSd5xFv0SWPPeJhH5IE8cGVc3eI%2By6Or7KhS5PVxvYBiDAGAkUy8JofAWSJWf0nGS27rmzADO8EoY1r9%2Fym9sF231YiCOsK2g71%2FzfSaEbuoezVxEcSMozKsfxw4xR4D%2Bsu4VjTwPtkRdt9OU7en42MEE64YA4sURa5HullaP1Dce8TpbUZsILPodGxQzuoezHBRdqDis75swzCQyeMZwal4uJ0AY0NA9KRD%2BlakAGYTzlXfg3tv7pJpCPoNCfLOwIXOfVqNXOtPEzg%2F0owmLFa9uDSuTd3YAimm4jHIblgbgxNUvU7Ds9mGYkp0CQkPY8TXfiKWoeMghhO3AONyrg9nVes9DotuLdknUMNJBOlF8BB%2B%2FxMf6yxEcFXcuvk0%2F%2FqW7vw9xOJOsZ1W%2Fencm41%2BbhzyqYQO%2BLo5yjMEUHHEBKeVPRS%2Bo3rke8e359BOA3VXLk5Buq3ONqBjOL0D%2BbPnjCN6mkKC8DdLCBmkqUKYcHU0YMljE8Acg28HSF%2FwmeaTLuWryVPa4LW0ws8%2FNkwY6qQE5Ht64FqCdDh7UoMebzAd7C%2B%2BwYnIbLeeC8IldBmzX1qUbklNsKcEdqAtMCWy3ewRn5SWx5aozAEfXBCixr5q3JsqQwBMbrjhZb%2BkQEglFyuZAXRxqZtR6ajoa1I5ko5MByFvHhjBS07gqKU%2FoMBC3K1624p6Joxn7v4mi%2F5kT8OgHHDuB44Odd6NvGn1265Bti7lsB3eSZmlqV4u9mpYkKokfwW88SVCc&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220505T071537Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFASRX6QUR%2F20220505%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=49731b6507152588338426ccd3392ed7bb12b9f70ea0d86f6c73a6384a40e9eb",4433.790000000001, 10.0)
-    ))
+    val recipes by viewModel.recipeList.observeAsState()
+    val favourites by viewModel.favourites.observeAsState()
     val isLoading: Boolean by viewModel.isLoading
     val selectedTab = RecipesTab.getTabFromResource(viewModel.selectedTab.value)
     val tabs = RecipesTab.values()
@@ -103,6 +101,7 @@ fun Recipes(viewModel: RecipesViewModel) {
                     Crossfade(selectedTab) { destination ->
                         when (destination) {
                             RecipesTab.RECIPES -> RecipeList(modifier, recipes ?: listOf(), {recipe -> viewModel.saveToFavourites(recipe)})
+                            RecipesTab.FAVOURITES -> RecipeList(modifier, favourites ?: listOf(), {recipe -> viewModel.saveToFavourites(recipe)})
                             RecipesTab.ABOUT -> About()
 
                         }
@@ -148,13 +147,15 @@ enum class RecipesTab(
     val title: String,
 ) {
     RECIPES("Recipes"),
+    FAVOURITES("Favourites"),
     ABOUT("About");
 
     companion object {
         fun getTabFromResource(tabNum: Int): RecipesTab {
             return when (tabNum) {
                 0 -> RECIPES
-                1 -> ABOUT
+                1 -> FAVOURITES
+                2 -> ABOUT
                 else -> RECIPES
             }
         }
@@ -164,6 +165,8 @@ enum class RecipesTab(
 sealed class NavScreen(val route: String) {
 
     object Home : NavScreen("Home")
+
+    object Favourites: NavScreen("Favourites")
 
     object About : NavScreen("About")
 }

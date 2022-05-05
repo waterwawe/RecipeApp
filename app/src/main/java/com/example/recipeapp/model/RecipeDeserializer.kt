@@ -13,10 +13,13 @@ class RecipeDeserializer: JsonDeserializer<Recipe> {
         context: JsonDeserializationContext?
     ): Recipe {
         val recipeObject = json?.getAsJsonObject()
-        val title: String? = recipeObject?.get("recipe.label")?.asString
-        val imageSource: String?  = recipeObject?.get("recipe.label")?.asString
-        val calories: Double?  = recipeObject?.get("recipe.calories")?.asDouble
-        val timeToMake: Double? = recipeObject?.get("recipe.totalTime")?.asDouble
+        val recipe = recipeObject?.getAsJsonObject("recipe")
+        val images = recipe?.getAsJsonObject("images")
+        val thumbnail = images?.getAsJsonObject("THUMBNAIL")
+        val title: String? = recipe?.get("label")?.asString
+        val imageSource: String? = thumbnail?.get("url")?.asString
+        val calories: Double?  = recipe?.get("calories")?.asDouble
+        val timeToMake: Double? = recipe?.get("totalTime")?.asDouble
 
         return Recipe(null,title,imageSource,calories,timeToMake)
     }

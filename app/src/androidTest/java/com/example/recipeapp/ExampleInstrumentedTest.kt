@@ -22,7 +22,7 @@ class ExampleInstrumentedTest {
     @Inject
     lateinit var recipeService: RecipeService
 
-    @Test
+    /*@Test
     fun apiqueryTest_ShouldBeSuccessful() = runBlockingTest {
         val pulledPork  = "pulled pork"
         val queryParams = HashMap<String,String>();
@@ -36,5 +36,5 @@ class ExampleInstrumentedTest {
         val result = apiResponse.execute()
 
         assertTrue(result.isSuccessful)
-    }
+    }*/
 }

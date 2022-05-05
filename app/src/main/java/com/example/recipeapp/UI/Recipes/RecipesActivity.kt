@@ -8,6 +8,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,8 +18,7 @@ class RecipesActivity : ComponentActivity() {
 
         setContent {
             CompositionLocalProvider() {
-
-                    Recipes(viewModel = hiltViewModel())
+                Recipes(viewModel = hiltViewModel())
             }
         }
     }

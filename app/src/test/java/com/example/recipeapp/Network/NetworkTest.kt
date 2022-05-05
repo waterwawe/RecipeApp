@@ -1,15 +1,13 @@
 package com.example.recipeapp.Network
 
 import com.example.recipeapp.DI.NetworkConfig
+import com.skydoves.sandwich.suspendOnSuccess
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.Assert.assertThat
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
-import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 import org.robolectric.RobolectricTestRunner
-import retrofit2.http.QueryMap
 import java.util.*
 import javax.inject.Inject
 
@@ -30,8 +28,8 @@ class NetworkTest {
 
 
         val apiResponse = recipeService.searchRecipes(queryParams)
-        val result = apiResponse.execute()
-
-        assertTrue(result.isSuccessful)
+        apiResponse.suspendOnSuccess {
+            assertFalse(data.hits.isEmpty())
+        }
     }
 }

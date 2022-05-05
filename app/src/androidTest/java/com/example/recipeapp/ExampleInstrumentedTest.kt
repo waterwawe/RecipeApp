@@ -1,7 +1,5 @@
 package com.example.recipeapp
 
-import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.recipeapp.DI.NetworkConfig
 import com.example.recipeapp.Network.RecipeService
 import kotlinx.coroutines.test.runBlockingTest

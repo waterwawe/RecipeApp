@@ -1,5 +1,7 @@
 package com.example.recipeapp
 
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.example.recipeapp.DI.NetworkConfig
 import com.example.recipeapp.Network.RecipeService
 import kotlinx.coroutines.test.runBlockingTest
@@ -19,22 +21,5 @@ import javax.inject.Inject
  */
 @RunWith(RobolectricTestRunner::class)
 class ExampleInstrumentedTest {
-    @Inject
-    lateinit var recipeService: RecipeService
 
-    /*@Test
-    fun apiqueryTest_ShouldBeSuccessful() = runBlockingTest {
-        val pulledPork  = "pulled pork"
-        val queryParams = HashMap<String,String>();
-        queryParams.put("q",pulledPork)
-        queryParams.put("type", "public")
-        queryParams.put("app_id", NetworkConfig.APP_ID)
-        queryParams.put("app_key", NetworkConfig.APP_KEY)
-
-
-        val apiResponse = recipeService.searchRecipes(queryParams)
-        val result = apiResponse.execute()
-
-        assertTrue(result.isSuccessful)
-    }*/
 }

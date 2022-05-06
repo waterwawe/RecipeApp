@@ -24,6 +24,7 @@ import com.google.accompanist.insets.statusBarsPadding
 fun RecipeList(
     modifier: Modifier = Modifier,
     recipes: List<Recipe>,
+    isFavourites: Boolean,
     onSave: (recipe: Recipe) -> Unit
 ){
     LazyColumn {
@@ -50,7 +51,7 @@ fun RecipeList(
                                 contentDescription = "Favorite",
                                 modifier = Modifier.size(ButtonDefaults.IconSize)
                             )
-                            Text("Add to Favourites")
+                            Text(text = if (isFavourites) {"Remove from favourites"} else "Add to Favourites")
                         }
                     }
                 }

@@ -41,19 +41,17 @@ class RecipesRepository @Inject constructor(
     }
 
     @WorkerThread
-    fun loadFavouriteRecipes(
-        onStart: () -> Unit,
-        onCompletion: () -> Unit,
-    ) = flow {
-        val recipes: List<Recipe> = recipeDao.getRecipeList()
-        emit(recipes)
-    }.onStart { onStart() }.onCompletion { onCompletion() }.flowOn(Dispatchers.IO)
-
-    @WorkerThread
     suspend fun addToFavourites(recipe: Recipe)
     {
         recipeDao.insertRecipe(recipe)
         Log.i("Added recipe",recipe?.title.toString())
+    }
+
+    @WorkerThread
+    suspend fun deleteFromFavourites(recipe: Recipe)
+    {
+        recipeDao.deleteRecipe(recipe)
+        Log.i("Deleted recipe",recipe?.title.toString())
     }
 
     @WorkerThread

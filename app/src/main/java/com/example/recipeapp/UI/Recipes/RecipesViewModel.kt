@@ -39,17 +39,18 @@ class RecipesViewModel @Inject constructor(
     fun selectTab(tab: Int) {
         _selectedTab.value = tab
         if(tab == 0){
-            getRecipes();
+            getRecipes(_queryString.value?: "");
         }
         if(tab == 1 ){
             getFavourites();
         }
     }
 
-    fun getRecipes(){
+    fun getRecipes(queryString:String){
         var list = listOf<Recipe>()
+        _queryString.value = queryString
         viewModelScope.launch {
-            list = recipesRepository.loadRecipes(_queryString.value ?: "")
+            list = recipesRepository.loadRecipes(queryString)
             _recipeList.value = list
         }
     }
@@ -57,6 +58,13 @@ class RecipesViewModel @Inject constructor(
     fun saveToFavourites(recipe: Recipe) {
         viewModelScope.launch {
             recipesRepository.addToFavourites(recipe)
+        }
+    }
+
+    fun deleteFromFavourites(recipe: Recipe) {
+        viewModelScope.launch {
+            recipesRepository.deleteFromFavourites(recipe)
+            getFavourites()
         }
     }
 

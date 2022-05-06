@@ -13,12 +13,16 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RecipesActivity : ComponentActivity() {
+
+    @VisibleForTesting
+    internal val viewModel: RecipesViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
             CompositionLocalProvider() {
-                Recipes(viewModel = hiltViewModel())
+                Recipes(viewModel = viewModel)
             }
         }
     }

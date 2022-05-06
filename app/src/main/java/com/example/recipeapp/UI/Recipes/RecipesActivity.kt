@@ -1,17 +1,29 @@
 package com.example.recipeapp.UI.Recipes
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import com.example.recipeapp.R
+import androidx.annotation.VisibleForTesting
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RecipesActivity : AppCompatActivity() {
+class RecipesActivity : ComponentActivity() {
+
+    @VisibleForTesting
     internal val viewModel: RecipesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recipes)
+
+        setContent {
+            CompositionLocalProvider() {
+                Recipes(viewModel = viewModel)
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,5 +22,8 @@ fun About() {
             .fillMaxWidth()
             .padding(20.dp)) {
         Text("This application is created by Drexler Nándor, student of the Budapest University of Technology and Economics for the subject Mobile software laboratory. Feel free to do anything with it.")
+        Button(onClick = { throw RuntimeException("Mean user crashed the app") }){
+            Text("Crash the app :(");
+        };
     }
 }

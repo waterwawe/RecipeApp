@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -19,6 +21,18 @@ android {
     }
 
     buildTypes {
+        debug{
+            // Add this extension
+            firebaseCrashlytics {
+                // Enable processing and uploading of native symbols to Firebase servers.
+                // By default, this is disabled to improve build speeds.
+                // This flag must be enabled to see properly-symbolicated native
+                // stack traces in the Crashlytics dashboard.
+                nativeSymbolUploadEnabled true
+                strippedNativeLibsDir 'build/intermediates/stripped_native_libs/release/out/lib'
+                unstrippedNativeLibsDir 'build/intermediates/merged_native_libs/release/out/lib'
+            }
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -49,6 +63,8 @@ android {
 dependencies {
 
     def room_version = "2.3.0"
+
+    implementation platform('com.google.firebase:firebase-bom:30.0.0')
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.3.0'
@@ -95,6 +111,8 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.0.0-rc01")
     implementation('androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha04')
     implementation("com.google.truth:truth:1.1.2")
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
     api 'com.google.dagger:dagger-android:2.37'
     api 'com.google.dagger:dagger-android-support:2.37'
     kapt 'com.google.dagger:dagger-android-processor:2.37'
